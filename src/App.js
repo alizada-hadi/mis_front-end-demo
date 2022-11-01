@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./store";
 import Theme from "./components/template/Theme";
+import Layout from "./components/layout";
 import history from "./history";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter history={history}>
           <Theme>
-            <h1>Hello World</h1>
+            <Layout />
           </Theme>
         </BrowserRouter>
       </PersistGate>
