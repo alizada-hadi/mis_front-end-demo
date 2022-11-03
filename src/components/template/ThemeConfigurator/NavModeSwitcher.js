@@ -1,29 +1,26 @@
-import React from 'react'
-import { Radio } from 'components/ui'
-import { useSelector, useDispatch } from 'react-redux'
-import { setNavMode } from 'store/theme/themeSlice'
-import {
-	NAV_MODE_THEMED
-} from 'constants/theme.constant'
+import React from "react";
+import { Radio } from "components/ui";
+import { useSelector, useDispatch } from "react-redux";
+import { setNavMode } from "store/theme/themeSlice";
+import { NAV_MODE_THEMED } from "constants/theme.constant";
 
 const NavModeSwitcher = () => {
+  const navMode = useSelector((state) => state.theme.navMode);
+  const dispatch = useDispatch();
 
-	const navMode = useSelector((state) => state.theme.navMode)
-	const dispatch = useDispatch()
+  const onSetNavMode = (val) => {
+    dispatch(setNavMode(val));
+  };
 
-	const onSetNavMode = (val) => {
-		dispatch(setNavMode(val))
-	}
+  return (
+    <Radio.Group
+      value={navMode === NAV_MODE_THEMED ? NAV_MODE_THEMED : "default"}
+      onChange={(val) => onSetNavMode(val)}
+    >
+      <Radio value="default">پیش فرض</Radio>
+      <Radio value={NAV_MODE_THEMED}>حالت دلخواه</Radio>
+    </Radio.Group>
+  );
+};
 
-	return (
-		<Radio.Group 
-			value={navMode === NAV_MODE_THEMED ? NAV_MODE_THEMED : 'default'} 
-			onChange={val => onSetNavMode(val)}
-		>
-			<Radio value="default">Default</Radio>
-			<Radio value={NAV_MODE_THEMED}>Themed</Radio>
-		</Radio.Group>
-	)
-}
-
-export default NavModeSwitcher
+export default NavModeSwitcher;
