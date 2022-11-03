@@ -14,8 +14,8 @@ import * as Yup from "yup";
 import useAuth from "utils/hooks/useAuth";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required("Please enter your email"),
-  password: Yup.string().required("Please enter your password"),
+  email: Yup.string().email().required("لطفا ایمیل آدرس خود را وارد کنید. "),
+  password: Yup.string().required("لطفا رمز ورود خود را وارد کنید. "),
   rememberMe: Yup.bool(),
 });
 
@@ -70,7 +70,7 @@ const SignInForm = (props) => {
           <Form>
             <FormContainer>
               <FormItem
-                label="Email"
+                label="ایمیل آدرس"
                 invalid={errors.email && touched.email}
                 errorMessage={errors.email}
               >
@@ -83,7 +83,7 @@ const SignInForm = (props) => {
                 />
               </FormItem>
               <FormItem
-                label="Password"
+                label="رمز ورود"
                 invalid={errors.password && touched.password}
                 errorMessage={errors.password}
               >
@@ -94,27 +94,26 @@ const SignInForm = (props) => {
                   component={PasswordInput}
                 />
               </FormItem>
-              <div className="flex justify-between mb-6">
+              <div className="flex justify-between mb-6 font-vazir">
                 <Field
                   className="mb-0"
                   name="rememberMe"
                   component={Checkbox}
-                  children="Remember Me"
+                  children="مرا به خاطر بسپار"
                 />
-                <ActionLink to={forgotPasswordUrl}>Forgot Password?</ActionLink>
+                <ActionLink to={forgotPasswordUrl}>
+                  رمز ورود خود را فراموش کرده اید؟
+                </ActionLink>
               </div>
               <Button
                 block
                 loading={isSubmitting}
                 variant="solid"
                 type="submit"
+                className="font-vazir text-lg"
               >
-                {isSubmitting ? "Signing in..." : "Sign In"}
+                {isSubmitting ? "در حال پردازش..." : "ورود"}
               </Button>
-              <div className="mt-4 text-center">
-                <span>Don't have an account yet? </span>
-                <ActionLink to={signUpUrl}>Sign up</ActionLink>
-              </div>
             </FormContainer>
           </Form>
         )}
