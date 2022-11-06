@@ -7,3 +7,11 @@ export async function getDepartmentList(params) {
     params,
   });
 }
+
+export async function createNewDepartment(data) {
+  return ApiService.fetchData({
+    url: "/api/departments/create/",
+    method: "post",
+    data,
+  });
+}

@@ -18,8 +18,8 @@ const DepartmentListContent = () => {
   );
 
   useEffect(() => {
-    dispatch(getList());
-  }, [dispatch]);
+    dispatch(getList({ sort, search }));
+  }, [dispatch, sort, search]);
 
   return (
     <div

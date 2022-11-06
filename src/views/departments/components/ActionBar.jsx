@@ -34,6 +34,7 @@ const ActionBar = () => {
   };
 
   const debounceFn = debounce(handleDebounceFn, 500);
+
   function handleDebounceFn(val) {
     dispatch(setSearch(val));
   }
