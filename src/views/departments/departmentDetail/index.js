@@ -6,6 +6,7 @@ import reducer from "./store";
 import { injectReducer } from "store/index";
 import isEmpty from "lodash/isEmpty";
 import useQuery from "utils/hooks/useQuery";
+import DepartmentDetailTabs from "./components/DepartmentDetailTabs";
 
 injectReducer("departmentDetail", reducer);
 
@@ -30,7 +31,11 @@ const DepartmentDetail = () => {
   return (
     <Container className="h-full">
       <Loading loading={loading}>
-        {!isEmpty(data) && <div>Hello there</div>}
+        {!isEmpty(data) && (
+          <div>
+            <DepartmentDetailTabs />
+          </div>
+        )}
       </Loading>
       {!loading && isEmpty(data) && (
         <div className="h-full flex flex-col items-center justify-center">
