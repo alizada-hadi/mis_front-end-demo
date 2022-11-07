@@ -4,11 +4,14 @@ import {
   HiOutlineHome,
   HiOutlineUsers,
   HiOutlineUserGroup,
+  HiOutlineCog,
 } from "react-icons/hi";
-
 import { BsBook } from "react-icons/bs";
+import { CiCircleList } from "react-icons/ci";
+import DepartmentDetailInfo from "./DepartmentDetailInfo";
 
-const DepartmentDetailTabs = () => {
+const DepartmentDetailTabs = ({ data }) => {
+  const { name, description, created_at, chief } = data;
   const { TabNav, TabList, TabContent } = Tabs;
   return (
     <div>
@@ -19,7 +22,7 @@ const DepartmentDetailTabs = () => {
             className="font-vazir"
             icon={<HiOutlineHome />}
           >
-            بخش معلومات
+            در مورد دیپارتمنت
           </TabNav>
           <TabNav
             value="student_tab"
@@ -38,14 +41,29 @@ const DepartmentDetailTabs = () => {
           <TabNav className="font-vazir" value="subject_tab" icon={<BsBook />}>
             بخش مضامین
           </TabNav>
+          <TabNav
+            value="course_tab"
+            className="font-vazir"
+            icon={<CiCircleList />}
+          >
+            بخش کورس ها
+          </TabNav>
+          <TabNav
+            value="setting_tab"
+            className="font-vazir"
+            icon={<HiOutlineCog />}
+          >
+            تنظیمات
+          </TabNav>
         </TabList>
         <div className="p-4">
           <TabContent value="department_info">
-            <p>
-              If builders built buildings the way programmers wrote programs,
-              then the first woodpecker that came along would destroy
-              civilization. (Gerald Weinberg)
-            </p>
+            <DepartmentDetailInfo
+              name={name}
+              description={description}
+              created_at={created_at}
+              chief={chief}
+            />
           </TabContent>
           <TabContent value="student_tab">
             <p>
@@ -65,6 +83,13 @@ const DepartmentDetailTabs = () => {
               Javascript is one the most programming langugaes in the world that
               enables us to create dynamic web page.
             </p>
+          </TabContent>
+
+          <TabContent value="course_tab">
+            <p>All i need to know is course and course detial</p>
+          </TabContent>
+          <TabContent value="setting_tab">
+            <p>all about settings and configurations</p>
           </TabContent>
         </div>
       </Tabs>

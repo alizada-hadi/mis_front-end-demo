@@ -33,7 +33,7 @@ const DepartmentDetail = () => {
       <Loading loading={loading}>
         {!isEmpty(data) && (
           <div>
-            <DepartmentDetailTabs />
+            <DepartmentDetailTabs data={data} />
           </div>
         )}
       </Loading>
