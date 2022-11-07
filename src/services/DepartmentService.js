@@ -15,3 +15,12 @@ export async function createNewDepartment(data) {
     data,
   });
 }
+
+export async function getDepartmentDetail(params) {
+  const { slug } = params;
+  return ApiService.fetchData({
+    url: `/api/departments/detail/${slug}/`,
+    method: "get",
+    params,
+  });
+}

@@ -18,13 +18,34 @@ const navigationConfig = [
   /** Example purpose only */
   {
     key: "departmentList",
-    path: "/department-list",
+    path: "",
     title: "دیپارتمنت ها",
     translateKey: "nav.departmentList",
-    icon: "singleMenu",
-    type: NAV_ITEM_TYPE_ITEM,
+    icon: "collapseMenu",
+    type: NAV_ITEM_TYPE_COLLAPSE,
     authority: [],
-    subMenu: [],
+    subMenu: [
+      {
+        key: "departmentList",
+        path: "/department-list",
+        title: " لیست دیپارتمنت ها",
+        translateKey: "nav.departmentList",
+        icon: "singleMenu",
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+      },
+      {
+        key: "departmentDetail",
+        path: "/department-detail/?slug",
+        title: "جزییات دیپارتمنت",
+        translateKey: "nav.departmentList",
+        icon: "singleMenu",
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+      },
+    ],
   },
 ];
 

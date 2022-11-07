@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Button, Input, Tooltip } from "../../../components/ui";
+import { Button, Input, Tooltip } from "components/ui";
 import {
   HiOutlinePlusCircle,
   HiOutlineSearch,

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getDepartmentList,
   createNewDepartment,
-} from "../../../services/DepartmentService";
+} from "../../../../services/DepartmentService";
 
 export const getList = createAsyncThunk("departments/getList", async (data) => {
   const response = await getDepartmentList(data);

@@ -14,7 +14,13 @@ export const protectedRoutes = [
   {
     key: "departmentList",
     path: "/department-list",
-    component: React.lazy(() => import("views/departments")),
+    component: React.lazy(() => import("views/departments/departmentList")),
+    authority: [],
+  },
+  {
+    key: "departmentDetail",
+    path: "/department-detail",
+    component: React.lazy(() => import("views/departments/departmentDetail")),
     authority: [],
   },
   {

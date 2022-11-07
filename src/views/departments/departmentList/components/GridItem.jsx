@@ -6,12 +6,12 @@ import Members from "./Members";
 import ItemDropdown from "./ItemDropdown";
 
 const GridItem = ({ data }) => {
-  const { name, description, created_at, chief, members } = data;
+  const { name, description, created_at, chief, members, id, slug } = data;
   return (
     <Card bodyClass="h-full">
       <div className="flex flex-col justify-between h-full">
         <div className="flex justify-between">
-          <Link to="">
+          <Link to={`/department-detail?slug=${slug}`}>
             <h6>{name}</h6>
           </Link>
           <ItemDropdown />
