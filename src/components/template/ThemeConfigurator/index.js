@@ -2,6 +2,7 @@ import React from "react";
 import ModeSwitcher from "./ModeSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 import NavModeSwitcher from "./NavModeSwitcher";
+import DirectionSwitcher from "./DirectionSwitcher";
 
 const ThemeConfigurator = ({ callBackClose }) => {
   return (
@@ -18,6 +19,10 @@ const ThemeConfigurator = ({ callBackClose }) => {
         <div className="font-vazir">
           <h6 className="mb-3">حالت مینیو</h6>
           <NavModeSwitcher />
+        </div>
+        <div className="font-vazir">
+          <h6 className="mb-3">حالت مینیو</h6>
+          <DirectionSwitcher />
         </div>
         <div className="font-vazir">
           <h6 className="mb-3">رنگها</h6>

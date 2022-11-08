@@ -32,7 +32,7 @@ const Menu = React.forwardRef((props, ref) => {
 	const menuClass = classNames(
 		menuDefaultClass,
 		menuColor(),
-		className
+		className, "font-vazir"
 	)
 
 	return (

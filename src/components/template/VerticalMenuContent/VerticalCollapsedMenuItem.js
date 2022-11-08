@@ -14,7 +14,7 @@ const DefaultItem = ({ nav, onLinkClick, userAuthority }) => {
         label={
           <>
             <VerticalMenuIcon icon={nav.icon} />
-            <span className="font-extrabold font-noto text-md">
+            <span className="font-extrabold font-vazir text-md">
               <Trans i18nKey={nav.translateKey} defaults={nav.title} />
             </span>
           </>
@@ -33,7 +33,7 @@ const DefaultItem = ({ nav, onLinkClick, userAuthority }) => {
             <MenuItem eventKey={subNav.key}>
               {subNav.path ? (
                 <Link
-                  className="h-full w-full flex items-center font-noto text-md"
+                  className="h-full w-full flex items-center font-vazir text-md"
                   onClick={() =>
                     onLinkClick?.({
                       key: subNav.key,
@@ -89,7 +89,7 @@ const CollapsedItem = ({ nav, onLinkClick, userAuthority }) => {
             <Dropdown.Item eventKey={subNav.key}>
               {subNav.path ? (
                 <Link
-                  className="h-full w-full flex items-center font-noto text-md"
+                  className="h-full w-full flex items-center font-vazir text-md"
                   onClick={() =>
                     onLinkClick?.({
                       key: subNav.key,

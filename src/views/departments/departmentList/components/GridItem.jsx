@@ -12,11 +12,11 @@ const GridItem = ({ data }) => {
       <div className="flex flex-col justify-between h-full">
         <div className="flex justify-between">
           <Link to={`/department-detail?slug=${slug}`}>
-            <h6>{name}</h6>
+            <h6 className="font-vazir">{name}</h6>
           </Link>
           <ItemDropdown />
         </div>
-        <p className="mt-4">{description}</p>
+        <p className="mt-4 font-vazir">{description}</p>
         <div className="mt-3">
           <div className="flex items-center justify-between mt-2">
             <Members members={members} />

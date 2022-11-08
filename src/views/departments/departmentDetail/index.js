@@ -44,7 +44,7 @@ const DepartmentDetail = () => {
             darkModeSrc="/img/others/img-2-dark.png"
             alt="no data found"
           />
-          <h3 className="mt-8">No Department Detail info found</h3>
+          <h3 className="mt-8 font-vazir">هیچ دیپارتمنت یافت نشد. </h3>
         </div>
       )}
     </Container>

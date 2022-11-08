@@ -32,7 +32,7 @@ const DefaultItem = (props) => {
               path: nav.path,
             })
           }
-          className="flex items-center h-full w-full font-noto text-md"
+          className="flex items-center h-full w-full font-vazir text-md"
         >
           <VerticalMenuIcon icon={nav.icon} />
           {!sideCollapsed && (

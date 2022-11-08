@@ -101,7 +101,7 @@ const DataTable = (props) => {
 					{
 						id: 'selection',
 						Header: (props) => (
-							<div>
+							<div className='font-vazir'>
 								<IndeterminateCheckbox 
 									{...props.getToggleAllRowsSelectedProps()} 
 									onIndeterminateCheckBoxChange={e => handleIndeterminateCheckBoxChange(e.target.checked, props.rows)}
@@ -155,7 +155,7 @@ const DataTable = (props) => {
 								<Th {...column.getHeaderProps()}>
 									{column.render('Header') && (
 										column.sortable ? (
-											<div className="cursor-pointer" onClick={() => handleSort(column)}>
+											<div className="cursor-pointer font-vazir text-right" onClick={() => handleSort(column)}>
 												{column.render('Header')}
 												<span>
 													<Sorter sort={column.isSortedDesc}/>

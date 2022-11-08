@@ -9,9 +9,10 @@ import {
 import { BsBook } from "react-icons/bs";
 import { CiCircleList } from "react-icons/ci";
 import DepartmentDetailInfo from "./DepartmentDetailInfo";
+import StudentList from "views/students/StudentList";
 
 const DepartmentDetailTabs = ({ data }) => {
-  const { name, description, created_at, chief } = data;
+  const { name, description, created_at, chief, slug } = data;
   const { TabNav, TabList, TabContent } = Tabs;
   return (
     <div>
@@ -66,11 +67,7 @@ const DepartmentDetailTabs = ({ data }) => {
             />
           </TabContent>
           <TabContent value="student_tab">
-            <p>
-              A computer lets you make more mistakes faster than any invention
-              in human history–with the possible exceptions of handguns and
-              tequila. (Mitch Radcliffe).
-            </p>
+            <StudentList slug={slug} />
           </TabContent>
           <TabContent value="instructor_tab">
             <p>
