@@ -39,7 +39,7 @@ const navigationConfig = [
         key: "departmentDetail",
         path: "/department-detail/?slug",
         title: "جزییات دیپارتمنت",
-        translateKey: "nav.departmentList",
+        translateKey: "nav.departmentDetail",
         icon: "singleMenu",
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
@@ -47,6 +47,7 @@ const navigationConfig = [
       },
     ],
   },
+
 ];
 
 export default navigationConfig;

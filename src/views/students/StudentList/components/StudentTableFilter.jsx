@@ -9,8 +9,8 @@ const {Control} = components
 
 const options = [
 	{ value: '', label: 'همه', color: 'bg-gray-500' },
-	{ value: 'active', label: 'فعال', color: 'bg-emerald-500' },
-	{ value: 'blocked', label: 'چانس', color: 'bg-red-500' },
+	{ value: 'فعال', label: 'فعال', color: 'bg-emerald-500' },
+	{ value: 'چانس', label: 'چانس', color: 'bg-red-500' },
 ]
 
 

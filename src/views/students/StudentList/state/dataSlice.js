@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getStudentList, createNewStudent } from "services/StudentService";
 
-
 export const getStudents = createAsyncThunk("studentList/getStudents", async (data) => {
     const response = await getStudentList(data)
+    console.log(data);
     return response.data
 })
 
@@ -12,7 +12,8 @@ export const initialTableData = {
     pageIndex : 1, 
     pageSize :10, 
     query : "", 
-    sort : {order : "", key : ""}
+    filter : "",
+    sort : {order : "", key : ""}, 
 }
 export const initialFilterData = {
     status : "",

@@ -18,8 +18,8 @@ const dataSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getDepartment.fulfilled]: (state, action) => {
-      state.loading = false;
       state.departmentData = action.payload;
+      state.loading = false;
     },
     [getDepartment.pending]: (state) => {
       state.loading = true;

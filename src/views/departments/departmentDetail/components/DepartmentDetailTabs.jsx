@@ -6,90 +6,64 @@ import {
   HiOutlineUserGroup,
   HiOutlineCog,
 } from "react-icons/hi";
-import { BsBook } from "react-icons/bs";
-import { CiCircleList } from "react-icons/ci";
 import DepartmentDetailInfo from "./DepartmentDetailInfo";
+import DepartmentHolding from "./DepartmentHolding";
 import StudentList from "views/students/StudentList";
+
+const holdingData = [
+  {
+      icon: '/img/thumbs/help-center-category-4.png',
+      symbol: 'STD',
+      name: 'شاگردان',
+      count: 150,
+      growshrink: 16.7,
+      path : "/student-list"
+  },
+  {
+      icon: '/img/thumbs/hubspot.png',
+      symbol: 'STF',
+      name: 'استادان',
+      count: 26,
+      growshrink: -8.3,
+      path : "/instructor-list"
+  },
+  {
+      icon: '/img/thumbs/help-center-category-0.png',
+      symbol: 'CURR',
+      name: 'مضامین',
+      count: 210,
+      growshrink: 4.9,
+      path : "/curriculum-list"
+  },
+  {
+      icon: '/img/thumbs/help-center-category-7.png',
+      symbol: 'CURS',
+      name: 'کورس ها',
+      count: 16,
+      growshrink: 11.34,
+      path : "course-list"
+  },
+  {
+    icon: '/img/thumbs/help-center-category-3.png',
+    symbol: 'STNG',
+    name: 'جزییات و ویرایش',
+    path : "setting"
+}
+]
 
 const DepartmentDetailTabs = ({ data }) => {
   const { name, description, created_at, chief, slug } = data;
   const { TabNav, TabList, TabContent } = Tabs;
+  
   return (
     <div>
-      <Tabs defaultValue="department_info">
-        <TabList>
-          <TabNav
-            value="department_info"
-            className="font-vazir"
-            icon={<HiOutlineHome />}
-          >
-            در مورد دیپارتمنت
-          </TabNav>
-          <TabNav
-            value="student_tab"
-            className="font-vazir"
-            icon={<HiOutlineUserGroup />}
-          >
-            بخش شاگردان
-          </TabNav>
-          <TabNav
-            value="instructor_tab"
-            className="font-vazir"
-            icon={<HiOutlineUsers />}
-          >
-            بخش استادان
-          </TabNav>
-          <TabNav className="font-vazir" value="subject_tab" icon={<BsBook />}>
-            بخش مضامین
-          </TabNav>
-          <TabNav
-            value="course_tab"
-            className="font-vazir"
-            icon={<CiCircleList />}
-          >
-            بخش کورس ها
-          </TabNav>
-          <TabNav
-            value="setting_tab"
-            className="font-vazir"
-            icon={<HiOutlineCog />}
-          >
-            تنظیمات
-          </TabNav>
-        </TabList>
-        <div className="p-4">
-          <TabContent value="department_info">
-            <DepartmentDetailInfo
+      <DepartmentDetailInfo
               name={name}
               description={description}
               created_at={created_at}
               chief={chief}
-            />
-          </TabContent>
-          <TabContent value="student_tab">
-            <StudentList slug={slug} />
-          </TabContent>
-          <TabContent value="instructor_tab">
-            <p>
-              In C++ it’s harder to shoot yourself in the foot, but when you do,
-              you blow off your whole leg. (Bjarne Stroustrup)
-            </p>
-          </TabContent>
-          <TabContent value="subject_tab">
-            <p>
-              Javascript is one the most programming langugaes in the world that
-              enables us to create dynamic web page.
-            </p>
-          </TabContent>
-
-          <TabContent value="course_tab">
-            <p>All i need to know is course and course detial</p>
-          </TabContent>
-          <TabContent value="setting_tab">
-            <p>all about settings and configurations</p>
-          </TabContent>
-        </div>
-      </Tabs>
+      />
+      <DepartmentHolding data={holdingData} slug={slug} />
     </div>
   );
 };

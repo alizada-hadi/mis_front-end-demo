@@ -6,8 +6,11 @@ import { getStudents, setTableData } from '../state/dataSlice'
 import { setSelectedStudent, setSortedColumn, setDrawerOpen } from '../state/stateSlice'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { Link } from 'react-scroll'
+import { useLocation } from 'react-router-dom'
 import dayjs from 'dayjs'
 import cloneDeep from 'lodash/cloneDeep'
+import StudentStatistic from './StudentStatistic'
+import StudentTableTools from './StudentTableTools'
 
 const statusColor = {
 	فعال: 'bg-emerald-500',
@@ -116,20 +119,22 @@ const columns = [
 
 
 const StudentTable = () => {
+	const location = useLocation()
+	const {slug} = location.state
     const dispatch = useDispatch()
     const data = useSelector(state => state.studentList.data.students)
     const loading = useSelector(state => state.studentList.data.loading)
     const filterData = useSelector(state => state.studentList.data.filterData)
-    const { pageIndex, pageSize, sort, query, total } = useSelector(state => state.studentList.data.tableData)
+    const { pageIndex, pageSize, sort, query, total, filter } = useSelector(state => state.studentList.data.tableData)
 
 
     const fetchData = useCallback(() => {
-		dispatch(getStudents({pageIndex, pageSize, sort, query, filterData}))
+		dispatch(getStudents({pageIndex, pageSize, sort, query, filterData, slug}))
 	}, [pageIndex, pageSize, sort, query, filterData, dispatch])
 
     useEffect(() => {
 		fetchData()
-	}, [fetchData, pageIndex, pageSize, sort, filterData])
+	}, [fetchData, pageIndex, pageSize, sort, filterData, slug])
 
     const tableData = useMemo(() => 
 		({pageIndex, pageSize, sort, query, total}), 
@@ -150,7 +155,6 @@ const StudentTable = () => {
 
     const onSort = (sort, sortingColumn) => {
 		const newTableData = cloneDeep(tableData)
-        console.log(newTableData);
 		newTableData.sort = sort
 		dispatch(setTableData(newTableData))
 		dispatch(setSortedColumn(sortingColumn))
@@ -158,6 +162,8 @@ const StudentTable = () => {
 
   return (
     <div>
+		<StudentStatistic slug={slug} />
+		<StudentTableTools />
       <DataTable
             columns={columns} 
             data={data}
