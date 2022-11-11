@@ -15,3 +15,11 @@ export async function createNewStudent(data) {
         data
     });
 }
+
+
+export async function apiGetAccountFormData () {
+    return ApiService.fetchData({
+        url: '/api/students/form-data/',
+        method: 'get',
+    })
+}

@@ -16,7 +16,9 @@ export const initialTableData = {
     sort : {order : "", key : ""}, 
 }
 export const initialFilterData = {
-    status : "",
+    status : ["فعال","تعجیل", "چانس", "محروم", "ناکام"],
+    gender : ["مرد","زن"], 
+    semester : ["اول", "دوم", "سوم", "چهارم", "پنجم", "ششم", "هفتم", "هشتم"],
 }
 const dataSlice = createSlice({
     name : "studentList/data",

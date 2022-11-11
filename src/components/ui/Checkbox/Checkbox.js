@@ -33,7 +33,7 @@ const Checkbox = React.forwardRef((props, ref) => {
 
 	const isChecked = useCallback(() => {
 		if (typeof groupValue !== 'undefined' && typeof value !== 'undefined') {
-			return groupValue.some(i => i === value)
+			return groupValue?.some(i => i === value)
 		}
 		return controlledChecked || defaultChecked
 	}, [controlledChecked, groupValue, value, defaultChecked])

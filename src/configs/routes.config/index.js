@@ -33,6 +33,15 @@ export const protectedRoutes = [
   }
   },
   {
+    key: "NewStudent",
+    path: "/student-register",
+    component: React.lazy(() => import("views/students/RegisterNewStudent")),
+    authority: [],
+    meta: {
+      pageContainerType: 'gutter'
+  }
+  },
+  {
     key: "collapseMenu.item1",
     path: "/collapse-menu-item-view-1",
     component: React.lazy(() => import("views/demo/CollapseMenuItemView1")),

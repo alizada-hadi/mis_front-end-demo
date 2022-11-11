@@ -1,10 +1,12 @@
 import React, {useRef} from 'react'
 import { Button } from 'components/ui'
 import { getStudents, setTableData, setFilterData } from '../state/dataSlice'
-import StudentTableFilter from './StudentTableFilter'
+import { Link } from 'react-router-dom'
 import StudentTableSearch from './StudentTableSearch'
 import { useDispatch, useSelector } from 'react-redux'
 import cloneDeep from 'lodash/cloneDeep'
+import StudentFilter from './StudentFilter'
+import { HiPlusCircle } from 'react-icons/hi'
 
 const StudentTableTools = () => {
     const dispatch = useDispatch()
@@ -28,29 +30,26 @@ const StudentTableTools = () => {
         dispatch(getStudents(data))
     }
 
-    const onClearAll = () => {
-        const newTableData = cloneDeep(tableData)
-		newTableData.query = ''
-		inputRef.current.value = ''
-		dispatch(setFilterData({status: ''}))
-		fetchData(newTableData)
-    }
 
   return (
     <div className="md:flex items-center justify-between">
       <div className="md:flex items-center gap-4">
         <StudentTableSearch ref={inputRef} onInputChange={handleInputChange} />
-        <StudentTableFilter />
+        <StudentFilter />
       </div>
-      <div className="mb-4">
-				<Button 
-					size="sm"
-                    className="font-vazir"
-					onClick={onClearAll}
-				>
-					پاک کردن فلتر ها
-				</Button>
-			</div>
+      <Link 
+		className="block lg:inline-block md:mb-4 font-vazir"
+		to="/student-register" 
+	>
+		<Button
+			block
+			variant="solid"
+			size="sm" 
+			icon={<HiPlusCircle />}
+		>
+			ثبت شاگرد جدید
+		</Button>
+	</Link>
     </div>
   )
 }
