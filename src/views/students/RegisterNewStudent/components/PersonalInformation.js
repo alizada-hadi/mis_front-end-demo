@@ -14,6 +14,7 @@ import { countryList } from 'constants/countries.constant'
 import { statusOptions, provinces, semesters } from '../constants'
 import { components } from 'react-select'
 import * as Yup from 'yup'
+import { DoubleSidedImage } from 'components/shared'
 
 const { SingleValue  } = components
 
@@ -59,6 +60,49 @@ const PhoneControl = ({ children, ...props }) => {
 		</SingleValue >
 	)
 }
+
+const StudentAvatarUploadField = (props) => {
+	const { label, name, children, touched, errors } = props
+
+	const onSetFormFile = (form, field, file) => {
+		form.setFieldValue(field?.name, URL.createObjectURL(file[0]))
+	}
+
+	return (
+		<FormItem
+			label={label}
+			
+		>
+			<Field name={name}>
+				{({ field, form }) => (
+					<Upload
+						draggable
+						className="cursor-pointer h-[300px]"
+						onChange={files => onSetFormFile(form, field, files)}
+						onFileRemove={files => onSetFormFile(form, field, files)}
+						showList={false}
+						uploadLimit={1}
+					>
+						{
+							field.value ?
+							<img className="p-3 max-h-[300px]" src={field.value} alt="" />
+							:
+							<div className="text-center">
+								{children}
+								<p className="font-semibold">
+									<span className="text-gray-800 dark:text-white font-vazir">فایل خود را کشیده و اینجا رها کنید. یا </span>
+									<span className="text-blue-500 font-vazir"> در فولدر خود جستجو کنید. </span>
+								</p>
+								<p className="mt-1 opacity-60 dark:text-white font-vazir">فایل درست: jpeg, png</p>
+							</div>
+						}
+					</Upload>
+				)}
+			</Field>
+		</FormItem>
+	)
+}
+
 
 
 /*
@@ -112,6 +156,9 @@ const personalInformation = ({data = {
 	const onNext = (values, setSubmitting) => {
 		onNextChange?.(values, 'personalInformation', setSubmitting)
 	} 
+	const onSetStudentAvatarFile = (form, field, file) => {
+		form.setFieldValue(field.name, URL.createObjectURL(file[0]))
+	}
 
 	return (
 		<>
@@ -143,6 +190,7 @@ const personalInformation = ({data = {
 										type="text"
 										autoComplete="off"
 										name="kankor_id"
+										className="font-vazir"
 										placeholder="آی دی کانکور"
 										component={Input}
 									/>
@@ -157,6 +205,7 @@ const personalInformation = ({data = {
 											type="text" 
 											autoComplete="off" 
 											name="firstName" 
+											className="font-vazir"
 											placeholder="نام محصیل" 
 											component={Input} 
 										/>
@@ -304,6 +353,7 @@ const personalInformation = ({data = {
 												<Select
 													placeholder="حالت مدنی محصیل"
 													field={field}
+													className="font-vazir"
 													form={form}
 													options={statusOptions}
 													value={statusOptions.filter(status => status.value === values.maritalStatus)}
@@ -312,18 +362,20 @@ const personalInformation = ({data = {
 											)}
 										</Field>
 									</FormItem>
-									<FormItem
-									label="عکس"
-									invalid={errors.image && touched.image}
-									errorMessage={errors.image}
+
+									<StudentAvatarUploadField
+									name="image"
+									label="عکس محصیل"
+									{...validationSchema}
 									>
-										<Field 
-											type="file" 
-											autoComplete="off" 
-											name="image"  
-											component={Input} 
+										<DoubleSidedImage 
+											className="mx-auto mb-3" 
+											src="/img/thumbs/passport.png"
+											darkModeSrc="/img/thumbs/passport-dark.png"
+											alt=""
 										/>
-									</FormItem>
+									</StudentAvatarUploadField>
+									
 								</div>
 								
 								<div className="flex justify-end gap-2">

@@ -7,10 +7,10 @@ import { setCurrentStep } from '../store/stateSlice'
 import { setStepStatus } from '../store/dataSlice'
 
 const steps = [
-	{ label: 'Personal information', value: 0 },
-	{ label: 'Identification', value: 1 },
-	{ label: 'Address Information', value: 2 },
-	{ label: 'Financial Information', value: 3 }
+	{ label: 'معلومات شخصی', value: 0 },
+	{ label: 'معلومات کارت هویتی', value: 1 },
+	{ label: 'معلومات اقارب محصیل', value: 2 },
+	{ label: 'معلومات حساب کاربری', value: 3 }
 ]
 
 const FormStep = ({currentStep, currentStepStatus, stepStatus}) => {
@@ -45,7 +45,7 @@ const FormStep = ({currentStep, currentStepStatus, stepStatus}) => {
 					onClick={() => onStepChange(step.value)}
 					isActive={currentStep === step.value}
 				>
-					<span className='text-2xl ltr:mr-2 rtl:ml-2'>
+					<span className='text-2xl ltr:mr-2 rtl:ml-2 font-vazir'>
 						{stepStatus[step.value].status === 'complete' && <HiCheckCircle className={textTheme} />}
 						{stepStatus[step.value].status === 'current' && <HiCheckCircle className="text-gray-400" />}
 						{(stepStatus[step.value].status === 'pending' && currentStep === step.value) && (

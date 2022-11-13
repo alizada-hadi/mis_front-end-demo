@@ -31,45 +31,21 @@ const dataSlice = createSlice({
                 passportDataPage: '',
                 nationalIdFront: '',
                 nationalIdBack: '',
-                driversLicenseFront: '',
-                driversLicenseBack: ''
             },
-            addressInformation: {
-                country: '',
-                addressLine1: '',
-                addressLine2: '',
-                city: '',
-                state: '',
-                zipCode: '',
-                sameCorrespondenceAddress: true,
-                correspondenceAddress: {
-                    country: '',
-                    addressLine1: '',
-                    addressLine2: '',
-                    city: '',
-                    state: '',
-                    zipCode: '',
-                }
-            },
-            financialInformation: {
-                taxResident: '',
-                tin: '',
-                noTin: false,
-                noTinReason: '',
+            familyInformation: {
+                relation: '',
+                addressLine: '',
+                relative_name: '',
                 occupation: '',
-                annualIncome: '',
-                sourceOfWealth: '',
-                companyInformation: {
-                    companyName: '',
-                    contactNumber:'',
-                    country: '',
-                    addressLine1: '',
-                    addressLine2: '',
-                    city: '',
-                    state: '',
-                    zipCode: '',
-                }
-            }
+                phone1: '',
+                phone2: "",
+            },
+            userAccountInformation: {
+                email: '',
+                username: '',
+                password: "",
+                password1: ''
+            },
         },
         stepStatus: {
             0: { status: 'pending' },

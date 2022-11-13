@@ -11,8 +11,8 @@ injectReducer('accountDetailForm', reducer)
 
 const PersonalInformation = lazy(() => import('./components/PersonalInformation'))
 const Identification = lazy(() => import('./components/Identification'))
-const AddressInfomation = lazy(() => import('./components/AddressInfomation'))
-const FinancialInformation = lazy(() => import('./components/FinancialInformation'))
+const FamilyInformation = lazy(() => import('./components/FamilyInformation'))
+const UserAccountInformation = lazy(() => import('./components/UserAccountInformation'))
 const AccountReview = lazy(() => import('./components/AccountReview'))
 
 const DetailForm = () => {
@@ -78,16 +78,16 @@ const DetailForm = () => {
 								/>
 							)}
 							{ currentStep === 2 && (
-								<AddressInfomation 
-									data={formData.addressInformation}  
+								<FamilyInformation 
+									data={formData.familyInformation}  
 									onNextChange={handleNextChange}
 									onBackChange={handleBackChange}
 									currentStepStatus={currentStepStatus}
 								/>
 							)}
 							{ currentStep === 3 && (
-								<FinancialInformation
-									data={formData.financialInformation}
+								<UserAccountInformation
+									data={formData.userAccountInformation}
 									onNextChange={handleNextChange}
 									onBackChange={handleBackChange}
 									currentStepStatus={currentStepStatus}

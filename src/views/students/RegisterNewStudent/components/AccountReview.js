@@ -1,7 +1,10 @@
 import React from 'react'
 import { DoubleSidedImage} from 'components/shared'
+import { useSelector } from 'react-redux'
 
 const AccountReview = () => {
+	const formData = useSelector((state) => state.accountDetailForm.data.formData)
+	console.log("from account reivew page ", formData);
 	return (
 		<div className="text-center h-full flex flex-col justify-center">
 			<DoubleSidedImage 
