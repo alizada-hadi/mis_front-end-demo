@@ -1,8 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetAccountFormData } from 'services/StudentService'
+import { apiGetAccountFormData, createNewStudent } from 'services/StudentService'
 
 export const getForm = createAsyncThunk('accountDetailForm/data/getForm', async () => {
     const response = await apiGetAccountFormData()
+    return response.data
+})
+
+export const createStudent  = createAsyncThunk("accountDetailForm/data/createStudent", async (data) => {
+    console.log("submitted data", data);
+    const response = await createNewStudent(data)
     return response.data
 })
 
@@ -68,6 +74,9 @@ const dataSlice = createSlice({
             state.formData = action.payload.formData
             state.stepStatus = action.payload.stepStatus
         },
+        [createStudent.fulfilled] : (state, action) => {
+            state.student = action.payload
+        }
     }
 })
 

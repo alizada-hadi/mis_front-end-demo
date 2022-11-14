@@ -94,7 +94,9 @@ const DetailForm = () => {
 								/>
 							)}
 							{ currentStep === 4 && (
-								<AccountReview />
+								<AccountReview
+								onBackChange={handleBackChange}
+								/>
 							)}
 						</Suspense>
 					</div>

@@ -1,69 +1,24 @@
 import { 
 	Input,
-	InputGroup,
 	Button,
-	DatePicker,
 	Select,
 	FormItem,
 	FormContainer, 
 	Upload
 } from 'components/ui'
 import { Field, Form, Formik } from 'formik'
-import NumberFormat from 'react-number-format'
-import { countryList } from 'constants/countries.constant'
-import { statusOptions, provinces, semesters } from '../constants'
+import { statusOptions, provinces, semesters, availableDepartments, studentStatus } from '../constants'
 import { components } from 'react-select'
 import * as Yup from 'yup'
 import { DoubleSidedImage } from 'components/shared'
 
-const { SingleValue  } = components
-
 const genderOptions = [
-	{ label: 'مرد', value: 'M' },
-	{ label: 'زن', value: 'F' },
+	{ label: 'مرد', value: 'مرد' },
+	{ label: 'زن', value: 'زن' },
 ]
-
-const NumberInput = props => {
-	return <Input {...props} value={props.field.value} />
-}
-
-const NumberFormatInput = ({onValueChange, ...rest}) => {
-	return (
-		<NumberFormat 
-			customInput={Input}
-			type="text"
-			onValueChange={onValueChange}
-			autoComplete="off"
-			{...rest}
-		/>
-	)
-}
-
-const PhoneSelectOption = ({innerProps, data, isSelected}) => {
-	return (
-		<div 
-			className={`cursor-pointer flex items-center justify-between p-2 ${isSelected ? 'bg-gray-100 dark:bg-gray-500' : 'hover:bg-gray-50 dark:hover:bg-gray-600'}`} 
-			{...innerProps}
-		>
-			<div className="flex items-center gap-2">
-				<span>({data.value}) {data.dialCode}</span>
-			</div>
-		</div>
-	)
-}
-
-const PhoneControl = ({ children, ...props }) => {	
-	const selected = props.getValue()[0]
-	return (
-		<SingleValue {...props}>
-			{selected && <span>{selected.dialCode}</span>}
-		</SingleValue >
-	)
-}
 
 const StudentAvatarUploadField = (props) => {
 	const { label, name, children, touched, errors } = props
-
 	const onSetFormFile = (form, field, file) => {
 		form.setFieldValue(field?.name, URL.createObjectURL(file[0]))
 	}
@@ -71,7 +26,6 @@ const StudentAvatarUploadField = (props) => {
 	return (
 		<FormItem
 			label={label}
-			
 		>
 			<Field name={name}>
 				{({ field, form }) => (
@@ -104,24 +58,6 @@ const StudentAvatarUploadField = (props) => {
 }
 
 
-
-/*
-kankor_id : "",
-firstName: '',
-lastName: '',
-fatherName: '',
-grandFatherName: '',
-school: '',
-score: '',
-department: '',
-province: '',
-gender: '',
-maritalStatus: '',
-semester: '',
-image: '',
-
-*/
-
 const validationSchema = Yup.object().shape({
 	kankor_id: Yup.string().required('آی دی کانکور محصیل الزامی میباشد. '),
 	firstName: Yup.string().required('لطفا نام محصیل را وارد کنید. '),
@@ -131,8 +67,10 @@ const validationSchema = Yup.object().shape({
 	school: Yup.string().required('لطفا مکتب دوره لیسه محصیل را وارد کنید. '),
 	score: Yup.string().required('لطفا نمره کانکور محصیل را وارد کنید. '),
 	province: Yup.string().required('لطفا ولایت اصلی محصیل را انتخاب کنید. '),
+	department: Yup.string().required('لطفا دیپارتمنت مربوطه را انتخاب کنید. '),
 	// dob: Yup.string(),
 	gender: Yup.string().required('لطفا جنسیت محصیل را انتخاب کنید. '),
+	status: Yup.string().required("لطفا وضعیت کنونی محصیل را انتخاب کنید. "),
 	maritalStatus: Yup.string(),
 	semester : Yup.string().required("لطفا سمستر مربوطه محصیل را انتخاب کنید. "), 
 	image : Yup.string()
@@ -150,15 +88,13 @@ const personalInformation = ({data = {
 	province: '',
 	gender: '',
 	maritalStatus: '',
+	status : "",
 	semester: '',
 	image: '',
 }, onNextChange, currentStepStatus}) => {
 	const onNext = (values, setSubmitting) => {
 		onNextChange?.(values, 'personalInformation', setSubmitting)
 	} 
-	const onSetStudentAvatarFile = (form, field, file) => {
-		form.setFieldValue(field.name, URL.createObjectURL(file[0]))
-	}
 
 	return (
 		<>
@@ -171,6 +107,7 @@ const personalInformation = ({data = {
 				enableReinitialize={true}
 				validationSchema={validationSchema}
 				onSubmit={(values, { setSubmitting }) => {
+					console.log(data.image);
 					setSubmitting(true)
 					setTimeout(() => {
 						onNext(values, setSubmitting)
@@ -255,6 +192,26 @@ const personalInformation = ({data = {
 								</div>
 
 								<FormItem
+									label="وضعیت"
+									invalid={errors.status && touched.status}
+									errorMessage={errors.status}
+								>
+									<Field name="status">
+										{({ field, form }) => (
+											<Select
+												placeholder="وضعیت"
+												field={field}
+												form={form}
+												options={studentStatus}
+												value={studentStatus.filter(status => status.value === values.status)}
+												onChange={status => form.setFieldValue(field.name, status.value)}
+											/>
+										)}
+									</Field>
+								</FormItem>
+
+								<div className="md:grid grid-cols-2 gap-4">
+								<FormItem
 									label="ولایت"
 									invalid={errors.province && touched.province}
 									errorMessage={errors.province}
@@ -273,6 +230,26 @@ const personalInformation = ({data = {
 									</Field>
 								</FormItem>
 
+								<FormItem
+									label="دیپارتمنت"
+									invalid={errors.department && touched.department}
+									errorMessage={errors.department}
+								>
+									<Field name="department">
+										{({ field, form }) => (
+											<Select
+												placeholder="دیپارتمنت"
+												field={field}
+												form={form}
+												options={availableDepartments}
+												value={availableDepartments.filter(department => department.value === values.department)}
+												onChange={department => form.setFieldValue(field.name, department.value)}
+											/>
+										)}
+									</Field>
+								</FormItem>
+
+								</div>
 								<div className="md:grid grid-cols-2 gap-4">
 									<FormItem
 										label="مکتب دوره لیسه"

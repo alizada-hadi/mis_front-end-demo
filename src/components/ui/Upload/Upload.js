@@ -34,6 +34,7 @@ const Upload = React.forwardRef(( props, ref) => {
 
 	const fileInputField = useRef(null)
 	const [ files, setFiles ] = useState(fileList)
+	console.log("here is upload", files);
 	const [ dragOver, setDragOver ] = useState(false)
 
 	const { themeColor, primaryColorLevel } = useConfig()

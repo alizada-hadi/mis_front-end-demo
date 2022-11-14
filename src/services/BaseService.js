@@ -15,13 +15,19 @@ const BaseService = axios.create({
 
 BaseService.interceptors.request.use(
   (config) => {
+    console.log(config.headers);
     const rawPersistData = localStorage.getItem(PERSIST_STORE_NAME);
     const persistData = deepParseJson(rawPersistData);
 
     const accessToken = persistData.auth.session.token;
 
     if (accessToken) {
+      /*
+        Authorization : Bearer dkdkd32323023/*dfd
+
+      */
       config.headers[REQUEST_HEADER_AUTH_KEY] = `${TOKEN_TYPE}${accessToken}`;
+      // config.headers["Content-Type"] = "multipart/form-data"
     }
 
     return config;
