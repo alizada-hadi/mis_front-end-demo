@@ -22,9 +22,6 @@ const DetailForm = () => {
 	const currentStep = useSelector((state) => state.accountDetailForm.state.currentStep)
 	const formData = useSelector((state) => state.accountDetailForm.data.formData)
 
-	console.log(currentStep);
-	console.log(stepStatus);
-	console.log(formData)
 	useEffect(() => {
 		dispatch(getForm())
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +40,6 @@ const DetailForm = () => {
 	}
 
 	const currentStepStatus = useMemo(() => stepStatus[currentStep].status, [stepStatus, currentStep])
-	console.log(currentStepStatus);
 
 	return (
 		<Container className="h-full">

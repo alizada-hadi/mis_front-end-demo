@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getStudents, setTableData } from '../state/dataSlice'
 import { setSelectedStudent, setSortedColumn, setDrawerOpen } from '../state/stateSlice'
 import useThemeClass from 'utils/hooks/useThemeClass'
-import { Link } from 'react-scroll'
+import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import dayjs from 'dayjs'
 import cloneDeep from 'lodash/cloneDeep'
@@ -17,7 +17,7 @@ const statusColor = {
 	چانس: 'bg-red-500',
 }
 
-const ActionColumn = ({row}) => {
+const ActionColumn = ({row, id}) => {
 	const { textTheme } = useThemeClass()
 	const dispatch = useDispatch()
 
@@ -27,12 +27,13 @@ const ActionColumn = ({row}) => {
 	}
 
 	return (
-		<div 
-			className={`${textTheme} cursor-pointer select-none font-semibold`}
-			onClick={onEdit}
+		<Link 
+			className={`${textTheme} cursor-pointer select-none font-semibold font-vazir`}
+			to={`/student-detail-view`}
+			state={{id:id}}
 		>
-			Edit
-		</div>
+			جزییات
+		</Link>
 	)
 }
 
@@ -44,8 +45,9 @@ const NameColumn = ({row}) => {
 		<div className="flex items-center">
 			<Avatar size={28} shape="circle" src={row.image} />
 			<Link 
-				className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold font-vazir`}
-				to={`/app/crm/customer-details?id=${row.id}`}
+				to={`/student-detail-view`}
+				state={{id : row.id}}
+				className={`hover:${textTheme} ml-2 rtl:mr-2 font-semibold font-vazir cursor-pointer`}
 			>
 				{row.first_name}  {row.last_name}
 			</Link>
@@ -113,7 +115,10 @@ const columns = [
 		Header: '',
 		id: 'action',
 		accessor: (row) => row,
-		Cell: props => <ActionColumn row={props.row.original} />
+		Cell: props => {
+			const row = props.row.original
+			return <ActionColumn row={props.row.original} id={row.id} />
+		}
 	},
 ]
 

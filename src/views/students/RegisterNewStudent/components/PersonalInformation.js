@@ -107,7 +107,7 @@ const personalInformation = ({data = {
 				enableReinitialize={true}
 				validationSchema={validationSchema}
 				onSubmit={(values, { setSubmitting }) => {
-					console.log(data.image);
+					
 					setSubmitting(true)
 					setTimeout(() => {
 						onNext(values, setSubmitting)

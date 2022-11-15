@@ -53,7 +53,6 @@ const holdingData = [
 
 const DepartmentDetailTabs = ({ data }) => {
   const { name, description, created_at, chief, slug } = data;
-  const { TabNav, TabList, TabContent } = Tabs;
   
   return (
     <div>

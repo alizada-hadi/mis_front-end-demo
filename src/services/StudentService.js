@@ -24,3 +24,10 @@ export async function apiGetAccountFormData () {
     })
 }
 
+export async function apiGetStudentDetail(id) {
+    return ApiService.fetchData({
+        url  : `/api/students/${id}/`, 
+        method : "get"
+    })
+}
+
