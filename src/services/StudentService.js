@@ -31,3 +31,12 @@ export async function apiGetStudentDetail(id) {
     })
 }
 
+export async function apiUpdateStudent(data) {
+    const {id} = data
+    return ApiService.fetchData({
+        url : `/api/students/${id}/update/`, 
+        method : "post",
+        data
+    })
+}
+

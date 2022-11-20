@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { apiGetStudentDetail } from "services/StudentService";
+import { apiGetStudentDetail, apiUpdateStudent } from "services/StudentService";
 
 
 export const studentDetail = createAsyncThunk("getStudentDetail/data", async (data) => {
@@ -7,6 +7,10 @@ export const studentDetail = createAsyncThunk("getStudentDetail/data", async (da
     return response.data
 })
 
+export const updateStudent = createAsyncThunk("getStudentDetail/studentUpdate/data", async data => {
+    const response = await apiUpdateStudent(data)
+    return response.data
+})
 
 const dataSlice = createSlice({
     name : "getStudentDetail", 
@@ -29,6 +33,10 @@ const dataSlice = createSlice({
         [studentDetail.rejected] : (state, action) => {
             state.loading = false 
             state.error = action.payload
+        }, 
+        [updateStudent.fulfilled] : (state, action) => {
+            state.loading = false
+            state.student = action.payload
         }
     }
 })

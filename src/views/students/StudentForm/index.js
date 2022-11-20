@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import * as Yup from 'yup'
 import PersonalInfoForm from './PersonalInfoForm'
+import FamilyInfoForm from './FamilyInfoForm'
 dayjs.extend(customParseFormat)
 
 const validationSchema = Yup.object().shape({
@@ -25,11 +26,11 @@ const { TabNav, TabList, TabContent } = Tabs
 
 const StudentForm = forwardRef((props, ref) => {
     const { student, onFormSubmit } = props
-
     return (
         <Formik
             innerRef={ref}
             initialValues={{
+                id : student.id || "",
                 kankor_id : student.kankor_id || "", 
                 first_name : student.first_name || "",
                 last_name : student.last_name || "",
@@ -40,6 +41,18 @@ const StudentForm = forwardRef((props, ref) => {
                 province : student.proince || "",
                 gender : student.gender || "",
                 maritalStatus : student.maritalStatus || "",
+                status : student.status || "",
+                department : student?.department?.code || "",
+                semester : student.semester || "", 
+                image : student.image || "", 
+
+                // family information
+                relation : student?.relative?.relation || "",
+                relative_name : student.relative.relative_name || "",
+                addressLine : student?.relative?.addressLine || "",
+                occupation : student?.relative?.occupation || "",
+                phone1 : student?.relative?.phone1 || "",
+                phone2 : student?.relative?.phone2 || ""
             }}
             validationSchema={validationSchema}
             onSubmit ={(values, {setSubmitting}) => {
@@ -47,21 +60,21 @@ const StudentForm = forwardRef((props, ref) => {
                 setSubmitting(false)
             }}
         >
-            {({touched, errors, resetForm}) => (
+            {({touched, errors, resetForm, values}) => (
                 <Form>
                     <FormContainer>
                         <Tabs defaultValue="personalInfo">
                             <TabList>
                                 <TabNav className="font-vazir" value="personalInfo">معلومات شخصی</TabNav>
-                                <TabNav className="font-vazir" value="personalInfo">معلومات فامیلی</TabNav>
+                                <TabNav className="font-vazir" value="familyInformation">معلومات فامیلی</TabNav>
                             </TabList>
                             <div className="p-6">
 								<TabContent value="personalInfo">
-									<PersonalInfoForm touched={touched} errors={errors} />
+									<PersonalInfoForm touched={touched} errors={errors} values={values} />
 								</TabContent>
-								{/* <TabContent value="social">
-									<SocialLinkForm touched={touched} errors={errors} />
-								</TabContent> */}
+								<TabContent value="familyInformation">
+									<FamilyInfoForm touched={touched} errors={errors} />
+								</TabContent>
 							</div>
                         </Tabs>
                     </FormContainer>

@@ -7,15 +7,12 @@ import {
 	Upload
 } from 'components/ui'
 import { Field, Form, Formik } from 'formik'
-import { statusOptions, provinces, semesters, availableDepartments, studentStatus } from '../constants'
+import { statusOptions, provinces, semesters, availableDepartments, studentStatus, genderOptions } from '../constants'
 import { components } from 'react-select'
 import * as Yup from 'yup'
 import { DoubleSidedImage } from 'components/shared'
 
-const genderOptions = [
-	{ label: 'مرد', value: 'مرد' },
-	{ label: 'زن', value: 'زن' },
-]
+
 
 const StudentAvatarUploadField = (props) => {
 	const { label, name, children, touched, errors } = props

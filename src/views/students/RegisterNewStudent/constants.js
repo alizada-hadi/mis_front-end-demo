@@ -32,6 +32,11 @@ export const semesters = [
 	{ label : "هشتم", value : "هشتم"},
 ]
 
+export const genderOptions = [
+	{ label: 'مرد', value: 'مرد' },
+	{ label: 'زن', value: 'زن' },
+]
+
 export const availableDepartments = [
 	{label : "سیستم های معلوماتی", value:"IS"},
 	{label : "انجنیری نرم افزار", value:"SE"},

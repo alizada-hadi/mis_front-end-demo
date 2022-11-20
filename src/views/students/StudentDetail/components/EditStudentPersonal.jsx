@@ -5,6 +5,7 @@ import { closeEditStudentPersonalInfoDialog } from '../store/stateSlice'
 import cloneDeep from 'lodash/cloneDeep'
 import dayjs from 'dayjs'
 import StudentForm from 'views/students/StudentForm'
+import { updateStudent } from '../store/dataSlice'
 
 const DrawerFooter = ({onSaveClick, onCancel}) => {
 	return (
@@ -31,6 +32,7 @@ const EditStudentPersonal = () => {
     const onFormSubmit = values => {
 		const clonedData = cloneDeep(student)
 		const { 
+			id,
 			kankor_id, 
             first_name, 
             last_name, 
@@ -41,10 +43,13 @@ const EditStudentPersonal = () => {
             province,  
             gender, 
             maritalStatus, 
+			semester, 
+			department,
 		} = values
 
 		// const basicInfo = {name, email, img }
 		const personalInfo = {
+			id,
 			kankor_id, 
             first_name, 
             last_name, 
@@ -55,10 +60,12 @@ const EditStudentPersonal = () => {
             province,  
             gender, 
             maritalStatus, 
+			semester, 
+			department,
 		}
 		clonedData.personalInfo = {...clonedData.personalInfo, ...personalInfo}
 		const newData = {...clonedData}
-		// dispatch(updateProfileData(newData))
+		dispatch(updateStudent(values))
 		// dispatch(putCustomer(newData))
 		onDrawerClose()
 	}
@@ -71,7 +78,7 @@ const EditStudentPersonal = () => {
             width={800}
 			closable={false}
 			bodyClass="p-0"
-			footer={<DrawerFooter onCancel={onDrawerClose}  />}
+			footer={<DrawerFooter onCancel={onDrawerClose} onSaveClick={formSubmit}  />}
 		>
 			<StudentForm ref={formikRef} onFormSubmit={onFormSubmit} student={student} />
 		</Drawer>
